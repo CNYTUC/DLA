@@ -37,11 +37,6 @@ if questions and current_index < len(questions):
         unsafe_allow_html=True
     )
 
-    # st.markdown(f"### Question {current_index + 1}")
-    # st.write(f"**Category:** {q_category}")
-    # st.write(f"**Subcategory:** {q_subcategory}")
-    # st.write(f"**Difficulty:** {difficulty}")
-
     if q_category == "Picture Description" and image_path:
         try:
             img = Image.open(image_path)
@@ -50,7 +45,15 @@ if questions and current_index < len(questions):
             st.error("Image could not be loaded.")
 
     if question_text:
-        st.write(f"**Question:** {question_text}")
+        
+        st.markdown(
+        f"<p style='text-align:left; font-size:22px;'>"
+        f"{question_text}"
+        f"</p>",
+        unsafe_allow_html=True
+        )
+            
+        #st.write(f"**Question:** {question_text}")
 
     audio = st.audio_input("Record your answer")
 
