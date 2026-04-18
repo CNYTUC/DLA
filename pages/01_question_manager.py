@@ -10,7 +10,7 @@ from utils import save_uploaded_image
 
 st.title("🛠️ Question Manager")
 
-tab1, tab2 = st.tabs(["Add Question", "Manage Questions"])
+tab1, tab2, tab3 = st.tabs(["Add Question", "Manage Questions", "Bulk Upload"])
 
 with tab1:
     st.subheader("Yeni soru ekle")
@@ -42,6 +42,7 @@ with tab1:
         st.success("Question added successfully.")
 
 with tab2:
+
     st.subheader("Mevcut sorular")
 
     rows = get_all_questions()
@@ -132,3 +133,39 @@ with tab2:
                     st.warning("Question deleted.")
     else:
         st.info("No questions found.")
+
+with tab3:
+    st.subheader("Toplu Soru Yükleme (CSV)")
+
+    uploaded_csv = st.file_uploader(
+        "CSV dosyası yükle",
+        type=["csv"],
+        key="bulk_csv_upload"
+    )
+
+    st.caption("Beklenen sütunlar: category, subcategory, question_text, image_path, difficulty, active")
+
+    if uploaded_csv is not None:
+        df = pd.read_csv(uploaded_csv)
+        st.dataframe(df, use_container_width=True)
+
+        if st.button("CSV'deki Soruları Ekle", key="bulk_insert_csv"):
+            required_cols = ["category", "subcategory", "question_text", "image_path", "difficulty", "active"]
+            missing_cols = [col for col in required_cols if col not in df.columns]
+
+            if missing_cols:
+                st.error(f"Eksik sütunlar var: {', '.join(missing_cols)}")
+            else:
+                records = []
+                for _, row in df.iterrows():
+                    records.append((
+                        str(row["category"]) if pd.notna(row["category"]) else "",
+                        str(row["subcategory"]) if pd.notna(row["subcategory"]) else "",
+                        str(row["question_text"]) if pd.notna(row["question_text"]) else "",
+                        str(row["image_path"]) if pd.notna(row["image_path"]) else None,
+                        str(row["difficulty"]) if pd.notna(row["difficulty"]) else "Easy",
+                        int(row["active"]) if pd.notna(row["active"]) else 1
+                    ))
+
+                add_questions_bulk(records)
+                st.success(f"{len(records)} soru başarıyla eklendi.")
