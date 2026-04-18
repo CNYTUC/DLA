@@ -7,8 +7,14 @@ from ai import transcribe_audio, evaluate_answer
 
 st.title("🎯 Test Center")
 
-category = st.selectbox("Choose Category", ["All"] + CATEGORIES)
-subcategory = st.text_input("Optional Subcategory Filter")
+col1, col2 = st.columns([2, 1])
+
+with col1:
+    category = st.selectbox("Category", ["All"] + CATEGORIES)
+
+with col2:
+    subcategory = st.text_input("Subcategory", placeholder="e.g. prefer")
+
 
 if st.button("Load Questions"):
     selected_category = None if category == "All" else category
