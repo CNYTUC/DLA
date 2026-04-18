@@ -10,7 +10,7 @@ from utils import save_uploaded_image
 
 st.title("🛠️ Question Manager")
 
-tab1, tab2, tab3 = st.tabs(["Add Question", "Manage Questions", "Bulk Upload"])
+tab1, tab2, tab3, tab3 , tab4 = st.tabs(["Soru Ekle", "Soruları Yönet", "oru Ekle (cvs)", "Soru Ekle (txt)"])
 
 with tab1:
     st.subheader("Yeni soru ekle")
@@ -169,3 +169,30 @@ with tab3:
 
                 add_questions_bulk(records)
                 st.success(f"{len(records)} soru başarıyla eklendi.")
+
+with tab4:
+    st.subheader("Hızlı Toplu Soru Ekleme")
+
+    bulk_category = st.selectbox("Category", CATEGORIES, key="bulk_category")
+    bulk_subcategory = st.text_input("Subcategory", key="bulk_subcategory")
+    bulk_difficulty = st.selectbox("Difficulty", DIFFICULTY_LEVELS, key="bulk_difficulty")
+    bulk_active = st.checkbox("Active", value=True, key="bulk_active")
+
+    bulk_questions = st.text_area(
+        "Her satıra bir soru yaz",
+        height=250,
+        key="bulk_questions_text"
+    )
+
+    if st.button("Soruları Toplu Ekle", key="bulk_add_text"):
+        lines = [line.strip() for line in bulk_questions.splitlines() if line.strip()]
+
+        if not lines:
+            st.warning("Eklemek için en az bir soru gir.")
+        else:
+            records = [
+                (bulk_category, bulk_subcategory, line, None, bulk_difficulty, int(bulk_active))
+                for line in lines
+            ]
+            add_questions_bulk(records)
+            st.success(f"{len(records)} soru eklendi.")
