@@ -9,6 +9,8 @@ st.set_page_config(
 
 init_db()
 
+st.sidebar.success("Select a page above")
+
 st.markdown("""
 <h1 style='text-align:center; color:#FF4B4B;'>
 🎤 AI Speaking Exam Simulator
