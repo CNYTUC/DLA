@@ -98,6 +98,18 @@ def get_active_questions(category=None, subcategory=None):
     conn.close()
     return rows
 
+def add_questions_bulk(question_list):
+    conn = get_connection()
+    cur = conn.cursor()
+
+    cur.executemany("""
+    INSERT INTO questions (category, subcategory, question_text, image_path, difficulty, active)
+    VALUES (?, ?, ?, ?, ?, ?)
+    """, question_list)
+
+    conn.commit()
+    conn.close()
+
 def delete_question(question_id):
     conn = get_connection()
     cur = conn.cursor()

@@ -1,6 +1,9 @@
 import streamlit as st
 import pandas as pd
 
+import io
+from db import add_questions_bulk
+
 from db import add_question, get_all_questions, delete_question, update_question
 from models import CATEGORIES, DIFFICULTY_LEVELS
 from utils import save_uploaded_image
