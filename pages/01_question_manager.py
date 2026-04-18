@@ -10,7 +10,7 @@ from utils import save_uploaded_image
 
 st.title("🛠️ Question Manager")
 
-tab1, tab2, tab3, tab3 , tab4 = st.tabs(["Soru Ekle", "Soruları Yönet", "oru Ekle (cvs)", "Soru Ekle (txt)"])
+tab1, tab2, tab3, tab4 = st.tabs(["Soru Ekle", "Soruları Yönet", "Soru Ekle (cvs)", "Soru Ekle (txt)"])
 
 with tab1:
     st.subheader("Yeni soru ekle")
