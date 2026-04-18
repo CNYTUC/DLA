@@ -9,8 +9,18 @@ st.set_page_config(
 
 init_db()
 
-st.title("🎤 English Speaking Test App")
-st.write("Bu uygulama ile soru yönetebilir ve test pratiği yapabilirsin.")
+st.markdown("""
+<h1 style='text-align:center; color:#FF4B4B;'>
+🎤 AI Speaking Exam Simulator
+</h1>
+<p style='text-align:center; font-size:18px;'>
+Practice • Speak • Get Scored • Improve
+</p>
+<p style='text-align:center; font-size:18px;'>
+Bu uygulama ile soru yönetebilir ve test pratiği yapabilirsin.</p>
+
+""", unsafe_allow_html=True)
+
 
 st.markdown("""
 ### Sayfalar
