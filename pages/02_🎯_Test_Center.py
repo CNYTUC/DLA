@@ -27,16 +27,15 @@ if questions and current_index < len(questions):
     q = questions[current_index]
     question_id, q_category, q_subcategory, question_text, image_path, difficulty, active = q
 
-
-    st.markdown("<p style='text-align:center; font-size:18px;'>"&
-                
-                "No:" & {current_index + 1} & 
-                ", Category:" & {q_category + 1} & 
-                ", Subcategory:" & {q_subcategory + 1} & 
-                ", Difficulty:" & {difficulty + 1} & 
-                
-                "</p>", unsafe_allow_html=True)
-
+    st.markdown(
+        f"<p style='text-align:center; font-size:18px;'>"
+        f"No: {current_index + 1} | "
+        f"Category: {q_category} | "
+        f"Subcategory: {q_subcategory} | "
+        f"Difficulty: {difficulty}"
+        f"</p>",
+        unsafe_allow_html=True
+    )
 
     # st.markdown(f"### Question {current_index + 1}")
     # st.write(f"**Category:** {q_category}")
