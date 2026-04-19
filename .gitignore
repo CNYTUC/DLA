@@ -5,6 +5,7 @@ __pycache__/
 
 # OPEN AI
 .streamlit/secrets.toml
+
 .env
 
 # C extensions
