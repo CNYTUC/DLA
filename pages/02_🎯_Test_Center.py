@@ -11,7 +11,6 @@ col1, col2 = st.columns([2, 1])
 
 with col1:
     category = st.selectbox("Category", ["All"] + CATEGORIES)
-
 with col2:
     subcategory = st.text_input("Subcategory", placeholder="e.g. prefer")
 
@@ -25,7 +24,7 @@ if st.button("Load Questions"):
         st.session_state["current_index"] = 0
     else:
         st.warning("No active questions found.")
-
+        
 questions = st.session_state.get("questions", [])
 current_index = st.session_state.get("current_index", 0)
 
