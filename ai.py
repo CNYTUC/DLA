@@ -8,12 +8,8 @@ def get_openai_client():
     return OpenAI(api_key=api_key)
 
 def transcribe_audio(audio_file):
-    """
-    Streamlit st.audio_input çıktısını OpenAI transcription API'ye gönderir.
-    Geriye metin döner.
-    """
-    if audio is not None:
-        st.audio(audio)
+    if audio_file is None:
+        return ""
 
     client = get_openai_client()
 
