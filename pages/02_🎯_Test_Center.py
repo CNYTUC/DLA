@@ -61,23 +61,24 @@ if questions and current_index < len(questions):
         #st.write(f"**Question:** {question_text}")
 
     audio = st.audio_input("Record your answer")
-
     manual_text = st.text_area("Or type your answer manually")
 
-    if st.button("Evaluate Answer"):
+    if st.button("Evaluate Answer", key="evaluate_answer_btn"):
         transcript = manual_text.strip()
 
         if not transcript and audio is not None:
-            transcript = transcribe_audio(audio)
+            with st.spinner("Transcribing audio..."):
+                transcript = transcribe_audio(audio)
 
         st.markdown("### Transcript")
         st.write(transcript)
 
-        result = evaluate_answer(
-            question=question_text,
-            category=q_category,
-            answer=transcript
-        )
+        with st.spinner("Evaluating answer..."):
+            result = evaluate_answer(
+                question=question_text,
+                category=q_category,
+                answer=transcript
+            )
 
         st.markdown("### Evaluation")
         st.write(f"**Total Score:** {result['total_score']}/100")
