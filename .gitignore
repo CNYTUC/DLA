@@ -3,6 +3,10 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# OPEN AI
+.streamlit/secrets.toml
+.env
+
 # C extensions
 *.so
 
