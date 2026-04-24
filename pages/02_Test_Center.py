@@ -108,7 +108,7 @@ if questions and current_index < len(questions):
                 st.write(result["improved_answer"])
 
     if st.button("Next Question", key=f"next_question_btn_{question_id}_{current_index}"):
-        st.session_state["current_index"] += 1
+        st.session_state["question_id"] += 1
         st.rerun()
 
 elif questions and current_index >= len(questions):
