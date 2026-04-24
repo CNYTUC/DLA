@@ -68,44 +68,44 @@ if questions and current_index < len(questions):
             unsafe_allow_html=True
         )
 
-    audio = st.audio_input("Record your answer", key=f"audio_{question_id}_{current_index}")
-    manual_text = st.text_area(
-        "Or type your answer manually",
-        key=f"manual_text_{question_id}_{current_index}"
+    audio = st.audio_input(
+        "Record your answer",
+        key=f"audio_{question_id}_{current_index}"
     )
 
     if st.button("Evaluate Answer", key=f"evaluate_answer_btn_{question_id}_{current_index}"):
-        transcript = manual_text.strip()
 
-        if not transcript and audio is not None:
+        if audio is None:
+            st.warning("Please record your answer first.")
+        else:
             with st.spinner("Transcribing audio..."):
                 transcript = transcribe_audio(audio)
 
-        if not transcript:
-            st.warning("Please record or type an answer first.")
-        else:
-            st.markdown("### Transcript")
-            st.write(transcript)
+            if not transcript:
+                st.warning("No speech detected. Please record your answer again.")
+            else:
+                st.markdown("### Transcript")
+                st.write(transcript)
 
-            with st.spinner("Evaluating answer..."):
-                result = evaluate_answer(
-                    question=question_text,
-                    category=q_category,
-                    answer=transcript
-                )
+                with st.spinner("Evaluating answer..."):
+                    result = evaluate_answer(
+                        question=question_text,
+                        category=q_category,
+                        answer=transcript
+                    )
 
-            st.markdown("### Evaluation")
-            st.write(f"**Total Score:** {result['total_score']}/100")
-            st.write(f"**Grammar:** {result['grammar_score']}/25")
-            st.write(f"**Fluency:** {result['fluency_score']}/25")
-            st.write(f"**Relevance:** {result['relevance_score']}/25")
-            st.write(f"**Vocabulary:** {result['vocabulary_score']}/25")
+                st.markdown("### Evaluation")
+                st.write(f"**Total Score:** {result['total_score']}/100")
+                st.write(f"**Grammar:** {result['grammar_score']}/25")
+                st.write(f"**Fluency:** {result['fluency_score']}/25")
+                st.write(f"**Relevance:** {result['relevance_score']}/25")
+                st.write(f"**Vocabulary:** {result['vocabulary_score']}/25")
 
-            st.markdown("### Feedback")
-            st.write(result["feedback"])
+                st.markdown("### Feedback")
+                st.write(result["feedback"])
 
-            st.markdown("### Improved Answer")
-            st.write(result["improved_answer"])
+                st.markdown("### Improved Answer")
+                st.write(result["improved_answer"])
 
     if st.button("Next Question", key=f"next_question_btn_{question_id}_{current_index}"):
         st.session_state["current_index"] += 1
