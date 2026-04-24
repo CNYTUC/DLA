@@ -73,7 +73,10 @@ if questions and current_index < len(questions):
         key=f"audio_{question_id}_{current_index}"
     )
 
-    
+    if st.button("Next Question", key=f"next_question_btn_{question_id}_{current_index}"):
+        st.session_state["current_index"] += 1
+        st.rerun()
+        
     if st.button("Evaluate Answer", key=f"evaluate_answer_btn_{question_id}_{current_index}"):
 
         if audio is None:
@@ -108,10 +111,6 @@ if questions and current_index < len(questions):
                 st.markdown("### Improved Answer")
                 st.write(result["improved_answer"])
 
-    
-    if st.button("Next Question", key=f"next_question_btn_{question_id}_{current_index}"):
-        st.session_state["current_index"] += 1
-        st.rerun()
 
 elif questions and current_index >= len(questions):
     st.success("Test completed.")
