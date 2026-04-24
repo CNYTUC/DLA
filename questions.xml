@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<question_bank>
+
+	<question id='1'><category>General</category><subcategory>Prefer</subcategory><question_text>Would you like to sit by the window or at the aisle while travelling by plane? Why?</question_text><image_path></image_path><active>1</active></question>
+	<question id='2'><category>General</category><subcategory>Prefer</subcategory><question_text>Would you like to fly as a passenger or flight attendant? Why?</question_text><image_path></image_path><active>1</active></question>
+	<question id='3'><category>General</category><subcategory>Prefer</subcategory><question_text>When you are stressed out do you like to eat junk food or not eat at all? Please explain. (75)</question_text><image_path></image_path><active>1</active></question>
+	<question id='4'><category>General</category><subcategory>Prefer</subcategory><question_text>Would you prefer earning a lot of money or doing your favorite job? Why?</question_text><image_path></image_path><active>1</active></question>
+	<question id='5'><category>General</category><subcategory>Prefer</subcategory><question_text>Would you prefer eating at home or outside? Why?</question_text><image_path></image_path><active>1</active></question>
+	<question id='6'><category>General</category><subcategory>Prefer</subcategory><question_text>Would you prefer spending your free time by yourself or with your friends?</question_text><image_path></image_path><active>1</active></question>
+	<question id='7'><category>General</category><subcategory>Prefer</subcategory><question_text>Do you like watching movies at home or at the cinema? Why?</question_text><image_path></image_path><active>1</active></question>
+	<question id='8'><category>General</category><subcategory>Prefer</subcategory><question_text>Would you prefer to live in a big city or a small town? Why?</question_text><image_path></image_path><active>1</active></question>
+	<question id='9'><category>General</category><subcategory>Prefer</subcategory><question_text>Would you prefer to live in the city or the countryside? Why? (75)</question_text><image_path></image_path><active>1</active></question>
+	<question id='10'><category>General</category><subcategory>Prefer</subcategory><question_text>Would you prefer working with uniform or casual dress?</question_text><image_path></image_path><active>1</active></question>
+	<question id='11'><category>General</category><subcategory>Prefer</subcategory><question_text>Do you prefer reading books or watching movies? Why? (80)</question_text><image_path></image_path><active>1</active></question>
+	<question id='12'><category>General</category><subcategory>Prefer</subcategory><question_text>Do you prefer shopping on-line or going to the shopping mall? Please explain.</question_text><image_path></image_path><active>1</active></question>
+	<question id='13'><category>General</category><subcategory>Prefer</subcategory><question_text>Do you prefer summer or winter holiday and where would you go, why?,</question_text><image_path></image_path><active>1</active></question>
+	<question id='14'><category>General</category><subcategory>Prefer</subcategory><question_text>Which do you prefer: Airbus A330 or Boeing 777? Why?</question_text><image_path></image_path><active>1</active></question>
+	<question id='15'><category>General</category><subcategory>Prefer</subcategory><question_text>What kind of hotel would you prefer staying?</question_text><image_path></image_path><active>1</active></question>
+	<question id='16'><category>General</category><subcategory>Prefer</subcategory><question_text>You need a computer and smart phone but you only have money to buy one of these which one would you prefer buying? Why?</question_text><image_path></image_path><active>1</active></question>
+	<question id='17'><category>General</category><subcategory>Prefer</subcategory><question_text>Would you travel alone or with a tour? Why?</question_text><image_path></image_path><active>1</active></question>
+	<question id='18'><category>General</category><subcategory>Prefer</subcategory><question_text>Would you like to give or receive a gift? Why?</question_text><image_path></image_path><active>1</active></question>
+	<question id='19'><category>General</category><subcategory>Prefer</subcategory><question_text>Do you like hot weather or cold weather?</question_text><image_path></image_path><active>1</active></question>
+	<question id='20'><category>General</category><subcategory>Prefer</subcategory><question_text>Should children be given tablets or smartphones?</question_text><image_path></image_path><active>1</active></question>
+	<question id='21'><category>General</category><subcategory>Prefer</subcategory><question_text>Which is more important for you ‘’Social Life or Career’’ ?</question_text><image_path></image_path><active>1</active></question>
+	<question id='22'><category>General</category><subcategory>Prefer</subcategory><question_text>Which is more important for you  “Money or Love” ? Why?</question_text><image_path></image_path><active>1</active></question>
+	<question id='23'><category>General</category><subcategory>Prefer</subcategory><question_text>Which is more important for you “Money or day off” ?</question_text><image_path></image_path><active>1</active></question>
+	<question id='24'><category>General</category><subcategory>Prefer</subcategory><question_text>Which is more important for you “Money or time” ?</question_text><image_path></image_path><active>1</active></question>
+	<question id='25'><category>General</category><subcategory>Prefer</subcategory><question_text>Which is more important to be successful “Luck” or “career plan” and Why?</question_text><image_path></image_path><active>1</active></question>
+	<question id='26'><category>General</category><subcategory>Prefer</subcategory><question_text>Which is more important for you, your family or your career?</question_text><image_path></image_path><active>1</active></question>
+	<question id='27'><category>General</category><subcategory>Prefer</subcategory><question_text>What is more important to you- money or job satisfaction? Why?</question_text><image_path></image_path><active>1</active></question>
+	<question id='28'><category>General</category><subcategory>Prefer</subcategory><question_text>Which is more important for children I-pad or Phone? Why?</question_text><image_path></image_path><active>1</active></question>
+	<question id='29'><category>General</category><subcategory>Prefer</subcategory><question_text>Which is more difficult: Unrully passengers or child passengers? (80)</question_text><image_path></image_path><active>1</active></question>
+
+</question_bank>
