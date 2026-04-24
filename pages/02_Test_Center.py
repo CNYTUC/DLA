@@ -43,7 +43,7 @@ if questions and current_index < len(questions):
     st.markdown(
         f"""
         <p style='text-align:center; font-size:18px;'>
-        No: {current_index + 1} |
+        Id: {question_id} |
         Category: {q_category} |
         Subcategory: {q_subcategory}
         </p>
