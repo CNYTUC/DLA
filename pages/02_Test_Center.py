@@ -1,7 +1,7 @@
 import streamlit as st
 from PIL import Image
 
-from db import get_active_questions, save_test_result
+from db_xml import get_active_questions
 from models import CATEGORIES
 from ai import transcribe_audio, evaluate_answer
 
@@ -10,35 +10,44 @@ st.title("🎯 Test Center")
 col1, col2 = st.columns([2, 1])
 
 with col1:
-    category = st.selectbox("Category", ["All"] + CATEGORIES)
+    category = st.selectbox("Category", ["All"] + CATEGORIES, key="test_category")
+
 with col2:
-    subcategory = st.text_input("Subcategory", placeholder="e.g. prefer")
+    subcategory = st.text_input("Subcategory", placeholder="e.g. prefer", key="test_subcategory")
 
-
-if st.button("Load Questions"):
+if st.button("Load Questions", key="load_questions_btn"):
     selected_category = None if category == "All" else category
-    questions = get_active_questions(category=selected_category, subcategory=subcategory or None)
+    questions = get_active_questions(
+        category=selected_category,
+        subcategory=subcategory or None
+    )
 
     if questions:
         st.session_state["questions"] = questions
         st.session_state["current_index"] = 0
     else:
         st.warning("No active questions found.")
-        
+
 questions = st.session_state.get("questions", [])
 current_index = st.session_state.get("current_index", 0)
 
 if questions and current_index < len(questions):
     q = questions[current_index]
-    question_id, q_category, q_subcategory, question_text, image_path, difficulty, active = q
+
+    question_id = q.get("id", "")
+    q_category = q.get("category", "")
+    q_subcategory = q.get("subcategory", "")
+    question_text = q.get("question_text", "")
+    image_path = q.get("image_path", "")
 
     st.markdown(
-        f"<p style='text-align:center; font-size:18px;'>"
-        f"No: {current_index + 1} | "
-        f"Category: {q_category} | "
-        f"Subcategory: {q_subcategory} | "
-        f"Difficulty: {difficulty}"
-        f"</p>",
+        f"""
+        <p style='text-align:center; font-size:18px;'>
+        No: {current_index + 1} |
+        Category: {q_category} |
+        Subcategory: {q_subcategory}
+        </p>
+        """,
         unsafe_allow_html=True
     )
 
@@ -50,62 +59,55 @@ if questions and current_index < len(questions):
             st.error("Image could not be loaded.")
 
     if question_text:
-        
         st.markdown(
-        f"<p style='text-align:left; font-size:22px;'>"
-        f"{question_text}"
-        f"</p>",
-        unsafe_allow_html=True
+            f"""
+            <p style='text-align:left; font-size:22px;'>
+            {question_text}
+            </p>
+            """,
+            unsafe_allow_html=True
         )
-            
-        #st.write(f"**Question:** {question_text}")
 
-    audio = st.audio_input("Record your answer")
-    manual_text = st.text_area("Or type your answer manually")
+    audio = st.audio_input("Record your answer", key=f"audio_{question_id}_{current_index}")
+    manual_text = st.text_area(
+        "Or type your answer manually",
+        key=f"manual_text_{question_id}_{current_index}"
+    )
 
-    if st.button("Evaluate Answer", key="evaluate_answer_btn"):
+    if st.button("Evaluate Answer", key=f"evaluate_answer_btn_{question_id}_{current_index}"):
         transcript = manual_text.strip()
 
         if not transcript and audio is not None:
             with st.spinner("Transcribing audio..."):
                 transcript = transcribe_audio(audio)
 
-        st.markdown("### Transcript")
-        st.write(transcript)
+        if not transcript:
+            st.warning("Please record or type an answer first.")
+        else:
+            st.markdown("### Transcript")
+            st.write(transcript)
 
-        with st.spinner("Evaluating answer..."):
-            result = evaluate_answer(
-                question=question_text,
-                category=q_category,
-                answer=transcript
-            )
+            with st.spinner("Evaluating answer..."):
+                result = evaluate_answer(
+                    question=question_text,
+                    category=q_category,
+                    answer=transcript
+                )
 
-        st.markdown("### Evaluation")
-        st.write(f"**Total Score:** {result['total_score']}/100")
-        st.write(f"**Grammar:** {result['grammar_score']}/25")
-        st.write(f"**Fluency:** {result['fluency_score']}/25")
-        st.write(f"**Relevance:** {result['relevance_score']}/25")
-        st.write(f"**Vocabulary:** {result['vocabulary_score']}/25")
+            st.markdown("### Evaluation")
+            st.write(f"**Total Score:** {result['total_score']}/100")
+            st.write(f"**Grammar:** {result['grammar_score']}/25")
+            st.write(f"**Fluency:** {result['fluency_score']}/25")
+            st.write(f"**Relevance:** {result['relevance_score']}/25")
+            st.write(f"**Vocabulary:** {result['vocabulary_score']}/25")
 
-        st.markdown("### Feedback")
-        st.write(result["feedback"])
+            st.markdown("### Feedback")
+            st.write(result["feedback"])
 
-        st.markdown("### Improved Answer")
-        st.write(result["improved_answer"])
+            st.markdown("### Improved Answer")
+            st.write(result["improved_answer"])
 
-        save_test_result(
-            question_id=question_id,
-            transcript=transcript,
-            total_score=result["total_score"],
-            grammar_score=result["grammar_score"],
-            fluency_score=result["fluency_score"],
-            relevance_score=result["relevance_score"],
-            vocabulary_score=result["vocabulary_score"],
-            feedback=result["feedback"],
-            improved_answer=result["improved_answer"]
-        )
-
-    if st.button("Next Question"):
+    if st.button("Next Question", key=f"next_question_btn_{question_id}_{current_index}"):
         st.session_state["current_index"] += 1
         st.rerun()
 
