@@ -54,7 +54,7 @@ if questions and current_index < len(questions):
     if q_category == "Picture Description" and image_path:
         try:
             img = Image.open(image_path)
-            st.image(img, caption="Picture Description", use_container_width=True)
+            st.image(img, caption="Picture Description", width=450)
         except Exception:
             st.error("Image could not be loaded.")
 
