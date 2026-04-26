@@ -33,5 +33,6 @@
 	<question id='29'><category>General</category><subcategory>Prefer</subcategory><question_text>Which is more difficult: Unrully passengers or child passengers? (80)</question_text><image_path></image_path><active>1</active></question>
 
 	<question id='30'><category>Picture Description</category><subcategory></subcategory><question_text>Describe the Picture</question_text><image_path>images/1.jpg</image_path><active>1</active></question>
+	<question id='31'><category>Picture Description</category><subcategory></subcategory><question_text>Describe the Picture</question_text><image_path>images/2.jpg</image_path><active>1</active></question>
 
 </question_bank>
