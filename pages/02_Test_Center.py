@@ -16,6 +16,11 @@ with col2:
     subcategory = st.text_input("Subcategory", placeholder="e.g. prefer", key="test_subcategory")
 
 if st.button("Load Questions", key="load_questions_btn"):
+
+    # Eski test verilerini temizle
+    st.session_state.pop("questions", None)
+    st.session_state.pop("current_index", None)
+
     selected_category = None if category == "All" else category
     questions = get_active_questions(
         category=selected_category,
@@ -25,6 +30,7 @@ if st.button("Load Questions", key="load_questions_btn"):
     if questions:
         st.session_state["questions"] = questions
         st.session_state["current_index"] = 0
+        st.rerun()
     else:
         st.warning("No active questions found.")
 
