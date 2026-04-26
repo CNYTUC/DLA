@@ -15,6 +15,13 @@ with col1:
 with col2:
     subcategory = st.text_input("Subcategory", placeholder="e.g. prefer", key="test_subcategory")
 
+current_filter = f"{category}_{subcategory}"
+
+if st.session_state.get("last_filter") != current_filter:
+    st.session_state["questions"] = []
+    st.session_state["current_index"] = 0
+    st.session_state["last_filter"] = current_filter
+
 if st.button("Load Questions", key="load_questions_btn"):
 
     # Eski test verilerini temizle
