@@ -1,31 +1,32 @@
+# https://cnytcxtry.streamlit.app/
+# 
+# #py -m pip install -r requirements.txt
+#streamlit run app.py
+#py -m streamlit run app.py
+#İCON KUTUPHANESİ https://fonts.google.com/icons?icon.set=Material+Symbols&icon.style=Rounded
+# https://unicode.org/emoji/charts/full-emoji-list.html
+#ÖRNEK KULLANIM: if st.button("Next Question", key=f"next_question_btn_{question_id}_{current_index}", icon=":material/home:"):
+
+
+# KÜTÜPHANELER
 import streamlit as st
+import pandas as pd
+
+# UTILS
+import UTILS.ara_module as am
+  
+
+#Sayfanın Genel Yapısı
+#============================================================================================
 
 st.set_page_config(
-    page_title="DLA Speaking Practice",
+    page_title="SINAV SİSTEMİ",
     page_icon="🎤",
     layout="wide"
 )
 
-st.sidebar.success("Select a page above")
+#============================================================================================
 
-st.markdown("""
-<h1 style='text-align:center; color:#FF4B4B;'>
-🎤 AI Speaking Exam Simulator
-</h1>
+# NAVIGASYON
+am.navigasyonOlustur()
 
-<p style='text-align:center; font-size:18px;'>
-Practice • Speak • Get Scored • Improve
-</p>
-
-<p style='text-align:center; font-size:18px;'>
-Bu uygulama ile XML dosyasındaki sorular üzerinden İngilizce konuşma pratiği yapabilirsin.
-</p>
-""", unsafe_allow_html=True)
-
-st.markdown("""
-### Sayfalar
-
-- **Test Center** → Soruları cevapla, konuşmanı yazıya döktür, AI ile puanlat
-""")
-
-st.info("Sorular online olarak düzenlenmez. Soruları localde `questions.xml` dosyasından güncelleyip GitHub’a yükleyebilirsin.")
